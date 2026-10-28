@@ -1,0 +1,286 @@
+@import "tailwindcss";
+
+/* 
+ * TAILWIND V4 SELECTOR-BASED DARK MODE VARIANT
+ * In Tailwind CSS v4, dark mode defaults to system prefers-color-scheme.
+ * This @custom-variant rule maps 'dark:' utilities to the '.dark' class and '[data-theme="dark"]' attribute.
+ */
+@custom-variant dark (&:where(.dark, [data-theme="dark"], .dark *, [data-theme="dark"] *));
+
+@layer base {
+  :root {
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    /* Light Theme Palette (Exact specification) */
+    --app-bg: #f8fafc;
+    --app-card: #ffffff;
+    --app-surface: #ffffff;
+    --app-surface-elevated: #f1f5f9;
+    --app-border: #e2e8f0;
+    --app-border-strong: #cbd5e1;
+    --app-text: #0f172a;
+    --app-text-muted: #475569;
+    --app-accent: #2563eb;
+    --app-grid-line: rgba(37, 99, 235, 0.04);
+    --scrollbar-track: #f1f5f9;
+    --scrollbar-thumb: #cbd5e1;
+    --scrollbar-thumb-hover: #94a3b8;
+  }
+
+  .dark, [data-theme="dark"] {
+    /* Dark Theme Palette (Exact specification) */
+    --app-bg: #0b1120;
+    --app-card: #111827;
+    --app-surface: #111827;
+    --app-surface-elevated: #1e293b;
+    --app-border: #334155;
+    --app-border-strong: #475569;
+    --app-text: #f8fafc;
+    --app-text-muted: #cbd5e1;
+    --app-accent: #60a5fa;
+    --app-grid-line: rgba(96, 165, 250, 0.04);
+    --scrollbar-track: #0b1120;
+    --scrollbar-thumb: #1e293b;
+    --scrollbar-thumb-hover: #334155;
+  }
+
+  html {
+    background-color: var(--app-bg);
+    color: var(--app-text);
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--app-bg);
+    color: var(--app-text);
+    overflow-x: hidden;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  /* Custom subtle scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover);
+  }
+}
+
+/* ==========================================================================
+   GLOBAL THEME HARMONIZATION RULES
+   Ensures complete surface, border, and typography switching between themes
+   ========================================================================== */
+
+/* DARK MODE STANDARDIZATION (#0B1120 Background, #111827 Cards, #334155 Borders) */
+html.dark, html[data-theme="dark"] {
+  background-color: #0b1120 !important;
+}
+
+html.dark body, html[data-theme="dark"] body {
+  background-color: #0b1120 !important;
+  color: #f8fafc !important;
+}
+
+.dark .bg-\[\#070d1e\],
+[data-theme="dark"] .bg-\[\#070d1e\] {
+  background-color: #0b1120 !important;
+}
+
+.dark .bg-\[\#09132b\],
+.dark .bg-\[\#0a142e\],
+.dark .bg-\[\#081024\],
+.dark .bg-\[\#070e24\],
+[data-theme="dark"] .bg-\[\#09132b\],
+[data-theme="dark"] .bg-\[\#0a142e\],
+[data-theme="dark"] .bg-\[\#081024\],
+[data-theme="dark"] .bg-\[\#070e24\] {
+  background-color: #111827 !important;
+  border-color: #334155 !important;
+}
+
+/* LIGHT MODE STANDARDIZATION (#F8FAFC Background, #FFFFFF Cards, #E2E8F0 Borders) */
+html:not(.dark):not([data-theme="dark"]) body,
+html[data-theme="light"] body {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+html:not(.dark):not([data-theme="dark"]) .bg-\[\#070d1e\],
+html[data-theme="light"] .bg-\[\#070d1e\] {
+  background-color: #f8fafc !important;
+}
+
+html:not(.dark):not([data-theme="dark"]) .bg-\[\#09132b\],
+html:not(.dark):not([data-theme="dark"]) .bg-\[\#0a142e\],
+html:not(.dark):not([data-theme="dark"]) .bg-\[\#070e24\],
+html:not(.dark):not([data-theme="dark"]) .bg-\[\#081024\],
+html[data-theme="light"] .bg-\[\#09132b\],
+html[data-theme="light"] .bg-\[\#0a142e\],
+html[data-theme="light"] .bg-\[\#070e24\],
+html[data-theme="light"] .bg-\[\#081024\] {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #e2e8f0 !important;
+}
+
+html:not(.dark):not([data-theme="dark"]) .bg-\[\#0b1736\],
+html:not(.dark):not([data-theme="dark"]) .bg-\[\#0c1a3d\],
+html:not(.dark):not([data-theme="dark"]) .bg-\[\#0c1836\],
+html[data-theme="light"] .bg-\[\#0b1736\],
+html[data-theme="light"] .bg-\[\#0c1a3d\],
+html[data-theme="light"] .bg-\[\#0c1836\] {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+
+html:not(.dark):not([data-theme="dark"]) .bg-slate-900,
+html:not(.dark):not([data-theme="dark"]) .bg-slate-900\/90,
+html:not(.dark):not([data-theme="dark"]) .bg-slate-900\/80,
+html:not(.dark):not([data-theme="dark"]) .bg-slate-900\/70,
+html:not(.dark):not([data-theme="dark"]) .bg-slate-900\/60,
+html:not(.dark):not([data-theme="dark"]) .bg-slate-900\/50,
+html:not(.dark):not([data-theme="dark"]) .bg-slate-900\/40,
+html:not(.dark):not([data-theme="dark"]) .bg-slate-950,
+html:not(.dark):not([data-theme="dark"]) .bg-slate-950\/90,
+html:not(.dark):not([data-theme="dark"]) .bg-slate-950\/85,
+html:not(.dark):not([data-theme="dark"]) .bg-slate-950\/80,
+html:not(.dark):not([data-theme="dark"]) .bg-slate-950\/60,
+html:not(.dark):not([data-theme="dark"]) .bg-slate-950\/40,
+html[data-theme="light"] .bg-slate-900,
+html[data-theme="light"] .bg-slate-900\/90,
+html[data-theme="light"] .bg-slate-900\/80,
+html[data-theme="light"] .bg-slate-900\/70,
+html[data-theme="light"] .bg-slate-900\/60,
+html[data-theme="light"] .bg-slate-900\/50,
+html[data-theme="light"] .bg-slate-900\/40,
+html[data-theme="light"] .bg-slate-950,
+html[data-theme="light"] .bg-slate-950\/90,
+html[data-theme="light"] .bg-slate-950\/85,
+html[data-theme="light"] .bg-slate-950\/80,
+html[data-theme="light"] .bg-slate-950\/60,
+html[data-theme="light"] .bg-slate-950\/40 {
+  background-color: #f1f5f9 !important;
+  border-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+html:not(.dark):not([data-theme="dark"]) .border-slate-800,
+html:not(.dark):not([data-theme="dark"]) .border-slate-800\/80,
+html:not(.dark):not([data-theme="dark"]) .border-slate-800\/70,
+html:not(.dark):not([data-theme="dark"]) .border-slate-800\/60,
+html:not(.dark):not([data-theme="dark"]) .border-slate-800\/50,
+html:not(.dark):not([data-theme="dark"]) .border-slate-800\/40,
+html:not(.dark):not([data-theme="dark"]) .border-slate-700,
+html:not(.dark):not([data-theme="dark"]) .border-slate-700\/80,
+html:not(.dark):not([data-theme="dark"]) .border-slate-700\/60,
+html[data-theme="light"] .border-slate-800,
+html[data-theme="light"] .border-slate-800\/80,
+html[data-theme="light"] .border-slate-800\/70,
+html[data-theme="light"] .border-slate-800\/60,
+html[data-theme="light"] .border-slate-800\/50,
+html[data-theme="light"] .border-slate-800\/40,
+html[data-theme="light"] .border-slate-700,
+html[data-theme="light"] .border-slate-700\/80,
+html[data-theme="light"] .border-slate-700\/60 {
+  border-color: #e2e8f0 !important;
+}
+
+html:not(.dark):not([data-theme="dark"]) input.bg-slate-900,
+html:not(.dark):not([data-theme="dark"]) select.bg-slate-900,
+html:not(.dark):not([data-theme="dark"]) input.bg-slate-950,
+html:not(.dark):not([data-theme="dark"]) textarea.bg-slate-900,
+html[data-theme="light"] input.bg-slate-900,
+html[data-theme="light"] select.bg-slate-900,
+html[data-theme="light"] input.bg-slate-950,
+html[data-theme="light"] textarea.bg-slate-900 {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+html:not(.dark):not([data-theme="dark"]) .hover\:bg-slate-800\/40:hover,
+html:not(.dark):not([data-theme="dark"]) .hover\:bg-slate-800\/50:hover,
+html:not(.dark):not([data-theme="dark"]) .hover\:bg-slate-800\/60:hover,
+html:not(.dark):not([data-theme="dark"]) .hover\:bg-slate-800:hover,
+html[data-theme="light"] .hover\:bg-slate-800\/40:hover,
+html[data-theme="light"] .hover\:bg-slate-800\/50:hover,
+html[data-theme="light"] .hover\:bg-slate-800\/60:hover,
+html[data-theme="light"] .hover\:bg-slate-800:hover {
+  background-color: #f1f5f9 !important;
+}
+
+/* Light mode text adaptivity while keeping button text protected */
+html:not(.dark):not([data-theme="dark"]) h1.text-white,
+html:not(.dark):not([data-theme="dark"]) h2.text-white,
+html:not(.dark):not([data-theme="dark"]) h3.text-white,
+html:not(.dark):not([data-theme="dark"]) h4.text-white,
+html:not(.dark):not([data-theme="dark"]) span.text-white:not(button *):not([class*="bg-cyan"]):not([class*="bg-blue"]):not([class*="bg-indigo"]):not([class*="bg-emerald"]):not([class*="bg-rose"]),
+html:not(.dark):not([data-theme="dark"]) p.text-slate-200:not(button *),
+html:not(.dark):not([data-theme="dark"]) span.text-slate-200:not(button *),
+html:not(.dark):not([data-theme="dark"]) td.text-slate-200,
+html:not(.dark):not([data-theme="dark"]) p.text-slate-300:not(button *),
+html:not(.dark):not([data-theme="dark"]) pre.text-slate-300,
+html[data-theme="light"] h1.text-white,
+html[data-theme="light"] h2.text-white,
+html[data-theme="light"] h3.text-white,
+html[data-theme="light"] h4.text-white,
+html[data-theme="light"] span.text-white:not(button *):not([class*="bg-cyan"]):not([class*="bg-blue"]):not([class*="bg-indigo"]):not([class*="bg-emerald"]):not([class*="bg-rose"]),
+html[data-theme="light"] p.text-slate-200:not(button *),
+html[data-theme="light"] span.text-slate-200:not(button *),
+html[data-theme="light"] td.text-slate-200,
+html[data-theme="light"] p.text-slate-300:not(button *),
+html[data-theme="light"] pre.text-slate-300 {
+  color: #0f172a !important;
+}
+
+html:not(.dark):not([data-theme="dark"]) .text-slate-400:not(button *),
+html[data-theme="light"] .text-slate-400:not(button *) {
+  color: #475569 !important;
+}
+
+/* Subtle tech grid background adapting to light/dark */
+.bg-tech-grid {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, var(--app-grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--app-grid-line) 1px, transparent 1px);
+}
+
+.bg-radial-glow {
+  background: radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.08) 0%, rgba(11, 17, 32, 0) 70%);
+}
+
+.dark .bg-radial-glow,
+[data-theme="dark"] .bg-radial-glow {
+  background: radial-gradient(circle at 50% 0%, rgba(96, 165, 250, 0.12) 0%, rgba(11, 17, 32, 0) 70%);
+}
+
+/* Print styling for official AICTE Verification Report */
+@media print {
+  body {
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  .print-card {
+    border: 1px solid #cbd5e1 !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+    color: #0f172a !important;
+    break-inside: avoid;
+  }
+}

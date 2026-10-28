@@ -1,0 +1,6 @@
+{
+  "name": "AICTE VerifyAI",
+  "description": "AI-powered regulatory document intelligence, compliance verification, and institutional scrutiny platform for technical education accreditation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
